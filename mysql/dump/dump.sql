@@ -1,0 +1,20 @@
+DROP DATABASE IF EXISTS nodejsdb;
+
+CREATE DATABASE nodejsdb;
+
+CREATE USER 'nodejsadmin'@'%' IDENTIFIED BY 'nodejsadminpassword';
+GRANT CREATE, ALTER, INDEX, LOCK TABLES, REFERENCES, UPDATE, DELETE, DROP, SELECT, INSERT ON nodejsdb.* TO 'nodejsadmin'@'%' WITH GRANT OPTION;
+
+CREATE USER 'user'@'%' IDENTIFIED BY 'userpassword';
+GRANT INSERT, SELECT ON nodejsdb.* TO 'user'@'%';
+
+FLUSH PRIVILEGES;
+
+USE nodejsdb
+
+CREATE TABLE IF NOT EXISTS people (
+  id int unsigned NOT NULL AUTO_INCREMENT,
+  nome VARCHAR(500) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+ 
